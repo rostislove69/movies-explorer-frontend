@@ -1,0 +1,233 @@
+@keyframes hover-button-1 {
+  from{
+    opacity: 1;
+  }
+
+  to{
+    opacity: 0.7;
+  }
+}
+
+.student-info{
+  margin-top: 110px;
+}
+
+.student-info__title{
+  height: 50px;
+  margin: 0 70px 0 70px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 22px;
+  line-height: 27px;
+  letter-spacing: -0.04em;
+  border-bottom: 1px solid
+}
+
+.student-info__block{
+  margin: 66px 70px 0 70px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.student-info__subtitle{
+  margin: 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  letter-spacing: -0.04em;
+}
+
+.student-info__prof-text{
+  margin-top: 18px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 18px;
+  line-height: 20px;
+  mix-blend-mode: normal;
+}
+
+.student-info__about{
+  width: 600px;
+  margin: 26px 0 99px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 22px;
+  mix-blend-mode: normal;
+}
+
+.student-info__photo{
+  width: 270px;
+  border-radius: 10px;
+}
+
+
+.student-info__git-link{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  text-decoration: none;
+}
+
+.student-info__git-link:hover{
+  animation-duration: 1s;
+  animation-name: hover-button-1;
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+.student-info__text{
+  margin: 100px 0 0 70px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 18px;
+  line-height: 20px;
+  color: #A0A0A0;
+  mix-blend-mode: normal;
+}
+
+.student-info__portfolio-list{
+  margin: 50px 70px 0 70px;
+  padding: 0;
+}
+
+.student-info__portfolio-element{
+  height: 90px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px #E8E8E8 solid;
+}
+
+.student-info__portfolio-element:last-child{
+  border: 0;
+}
+
+.student-info__portfolio-element-link{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 30px;
+  line-height: 50px;
+  letter-spacing: -0.04em;
+  color: #000000;
+  text-decoration: none;
+}
+
+.student-info__portfolio-element-link:hover{
+  animation-duration: 1s;
+  animation-name: hover-button-1;
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+.student-info__portfolio-element-icon{
+  width: 29px;
+  height: 29px;
+}
+
+@media screen and (max-width: 1100px){
+  .student-info__title{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .student-info__subtitle{
+    font-size: 40px;
+    line-height: 40px;
+    width: 348px;
+  }
+  .student-info__prof-text{
+    font-size: 12px;
+    line-height: 18px;
+    width: 348px;
+  }
+  .student-info__block{
+    margin-left: 50px;
+    margin-right: 50px;
+  }
+  .student-info__about{
+    width: 364px;
+    margin-right: 49px;
+    font-size: 12px;
+  }
+  .student-info__photo{
+    max-width: 255px;
+  }
+  .student-info__text{
+    margin: 90px 0 50px 50px;
+  }
+  .student-info__portfolio-list{
+    margin: 50px 50px 0 50px;
+  }
+}
+
+@media screen and (max-width: 800px){
+  .student-info__block{
+    flex-direction: column-reverse;
+  }
+  .student-info__subtitle{
+    margin-top: 40px;
+    width: 100%;
+  }
+  .student-info__prof-text{
+    width: 100%;
+  }
+  .student-info__about{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .student-info{
+    margin-top: 70px;
+  }
+  .student-info__title{
+    font-size: 18px;
+    margin: 0 14px;
+  }
+  .student-info__block{
+    margin: 60px 14px 70px;
+  }
+  .student-info__image-container{
+    display: flex;
+    justify-content: center;
+  }
+  .student-info__photo{
+    width: 100%;
+  }
+  .student-info__subtitle{
+    font-size: 30px;
+    text-align: center;
+  }
+  .student-info__prof-text{
+    text-align: center;
+  }
+  .student-info__about{
+    text-align: center;
+  }
+  .student-info__text{
+    margin: 70px 18px 40px;
+    font-size: 14px;
+  }
+  .student-info__portfolio-list{
+    margin: 40px 14px 0;
+  }
+  .student-info__portfolio-element{
+    margin-top: 20px;
+  }
+  .student-info__portfolio-element-link{
+    font-size: 18px;
+  }
+  .student-info__portfolio-element-icon{
+    width: 18px;
+    height: 18px;
+  }
+}

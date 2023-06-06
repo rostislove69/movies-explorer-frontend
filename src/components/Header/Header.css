@@ -1,0 +1,332 @@
+.header{
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: absolute;
+  top: 0;
+  width: 100%;
+}
+
+.header_hide{
+  display: none;
+}
+
+.header__logo{
+  margin: 18px 0 18px 70px;
+}
+
+.header__logo:hover{
+  opacity: 0.7;
+}
+
+.header__buttons-block{
+  padding-left: 55px;
+}
+
+.header__buttons-block_hide{
+  display: none;
+}
+
+.header__film-button{
+  border: none; 
+  outline: none;
+  background-color: white;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 13px;
+  line-height: 18px;
+  color: black;
+  text-decoration: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.header__film-button_active{
+  font-weight: bold;
+  
+}
+
+.header__film-button:first-child{
+  margin-right: 16px;
+}
+
+.header__film-button:hover{
+  cursor: pointer;
+  opacity: 0.7;
+}
+
+.header__film-button_active:hover{
+  opacity: 1;
+}
+
+.header__account-button{
+  padding-right: 10px;
+  background-image: url(../../images/icon__account.svg);
+  background-repeat:no-repeat;
+  background-position: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  margin: 0 70px 0 0;
+  width: 85px;
+  height: 32px;
+  background-color: white;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+.header__account-button_hide{
+  display: none;
+}
+
+.header__account-button_main-page{
+  color: white;
+}
+
+.header__account-button:hover{
+  border: 2px solid rgba(170, 170, 170);
+  cursor: pointer;
+}
+
+.header__burger-menu{
+  display: none;
+  width: 44px;
+  height: 44px;
+  background-image: url(../../images/icon__burger-menu.svg);
+  background-color: white;
+  background-position: center;
+  margin: 0 30px 0 0;
+  border: none;
+  background-color: rgba(0, 0, 0, 0);
+}
+
+.header__burger-menu_hide{
+  display: none;
+}
+
+.header__burger-menu_main-page{
+  background-image: url(../../images/icon__burger-menu-white.svg);
+}
+
+.header__burger-menu:hover {
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.header__menu{
+  display: flex;
+  flex-direction: row-reverse;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100;
+  transform: translateX(100%);
+}
+
+.header__menu_active{
+  transform: translateX(0);
+  background-color: rgba(0, 0, 0, 0.5);
+}
+
+.header__menu-container{
+  top: 0;
+  right: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 66%;
+  background-color: #ffff;
+  list-style-type: none;
+  position: relative;
+}
+
+.header__close-button{
+  width: 22px;
+  height: 22px;
+  background-image: url(../../images/icon_close.svg);
+  background-position: center;
+  background-color: #ffff;
+  border: none;
+  cursor: pointer;
+  position: absolute;
+  top: 22px;
+  right: 22px;
+}
+
+.header__close-button:hover{
+  opacity: 0.7;
+}
+
+.header__menu-element{
+  margin-top: 28px;
+  text-decoration: none;
+}
+
+.header__menu-element_active{
+  border-bottom: 2px black solid;
+}
+
+.header__menu-element:first-of-type{
+  margin-top: 159px;
+}
+
+.header__menu-element:hover{
+  opacity: 0.7;
+}
+
+.header__menu-element_active:hover{
+  opacity: 1;
+}
+
+.header__menu-link{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 18px;
+  line-height: 22px;
+  cursor: pointer;
+  text-decoration: none;
+  color: black;
+}
+
+.header__burger-account-button{
+  margin-top: 600px;
+  padding-right: 10px;
+  background-image: url(../../images/icon__account.svg);
+  background-repeat:no-repeat;
+  background-position: 10px;
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  width: 85px;
+  height: 32px;
+  background-color: white;
+  border: 2px solid rgba(170, 170, 170, 0.2);
+  border-radius: 50px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 14px;
+  line-height: 16px;
+  color: black;
+  text-decoration: none;
+}
+
+.header__burger-account-button:hover{
+  border: 2px solid rgba(170, 170, 170);
+  cursor: pointer;
+}
+
+.header__buttons-not-auth{
+  margin-right: 70px;
+  display: flex;
+  align-items: center;
+}
+
+.header__registration{
+  text-decoration: none;
+  margin-right: 30px;
+  border: none; 
+  outline: none;
+  color: #FFFFFF;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 12px;
+}
+
+.header__registration:hover{
+  animation-duration: 1s;
+  animation-name: hover-button-1;
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+.header__enter{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 76px;
+  height: 32px;
+  background-color: #2BE080;
+  color: black;
+  border-radius: 3px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+}
+
+.header__enter:hover{
+  animation-duration: 1s;
+  animation-name: hover-button-1;
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+
+@media screen and (max-width: 1100px){
+  .header__logo{
+    margin-left: 30px;
+  }
+  .header__account-button{
+    margin-right: 30px;
+  }
+  .header__buttons-not-auth{
+    margin-right: 30px;
+  }
+}
+
+@media screen and (max-width: 1000px){
+  .header__buttons-block{
+    display: none;
+  }
+  .header__account-button{
+    display: none;
+  }
+  .header__burger-menu{
+    display: block;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .header__logo{
+    margin: 18px 0 18px 14px;
+  }
+  .header__burger-menu{
+    margin: 0 14px 0 0;
+  }
+  .header__menu-container{
+    width: 100%;
+  }
+  .header__buttons-not-auth{
+    margin-right: 14px;
+  }
+  .header__registration{
+    margin-right: 14px;
+    font-size: 10px;
+  }
+  .header__enter{
+    width: 54px;
+    height: 26px;
+    font-size: 10px;
+  }
+}
+
+@media screen and (max-height: 1000px){
+  .header__burger-account-button{
+    margin-top: 444px;
+  }
+}
+
+@media screen and (max-height: 750px){
+  .header__burger-account-button{
+    margin-top: 300px;
+  }
+}

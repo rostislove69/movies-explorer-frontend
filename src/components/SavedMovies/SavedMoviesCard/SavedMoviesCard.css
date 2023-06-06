@@ -1,0 +1,90 @@
+.elements__element{
+  max-width: 360px;
+  margin: auto;
+}
+
+.elements__image:hover {
+  cursor: pointer;
+}
+
+.elements__image:hover~.elements__button-delete{
+  display: block;
+}
+
+.elements__image-block{
+  position: relative;
+}
+
+.elements__button-delete{
+  width: 21px;
+  height: 21px;
+  background-image: url(../../../images/icon__close.svg);
+  background-position: center;
+  border: none;
+  outline: none;
+  border-radius: 50px;
+  cursor: pointer;
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  display: none;
+}
+
+.elements__button-delete:hover{
+  display: block;
+  opacity: 0.8;
+}
+
+.elements__info-block{
+  margin: 14px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.elements__film-name{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 500;
+  font-size: 13px;
+  line-height: 16px;
+}
+
+.elements__film-duration{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 11px;
+  line-height: 10px;
+  text-align: center;
+  color: #A0A0A0;
+}
+
+@media screen and (max-width: 1350px){
+
+  .elements__image-block{
+    max-width: 339px;
+  }
+
+  .elements__image{
+    max-width: 339px;
+  }
+
+  .elements__info-block{
+    max-width: 339px;
+    margin-left: 0;
+    margin-right: 0;
+  }
+}
+
+@media screen and (max-width: 785px){
+  .elements__image{
+    width: 100%;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .elements__film-name{
+    font-size: 12px;
+    font-weight: bold;
+  }
+}

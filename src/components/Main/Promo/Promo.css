@@ -1,0 +1,140 @@
+@keyframes hover-button-2 {
+  from{
+    opacity: 1;
+  }
+
+  to{
+    opacity: 0.6;
+  }
+}
+
+.project-info{
+  background-color: #073042;
+  display: flex;
+  justify-content: space-between;
+  padding-bottom: 75px;
+}
+
+.project-info__info-block{
+  display: flex;
+  flex-direction: column;
+  margin-left: 70px;
+  margin-top: 183px;
+}
+
+
+.project-info__title{
+  margin: 0;
+  max-width: 631px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 50px;
+  line-height: 58px;
+  color: #FFFFFF;
+}
+
+
+
+.project-info__subtitle{
+  margin: 36px 0 0 0;
+  width: 310px;
+  height: 32px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  color: #FFFFFF;
+  mix-blend-mode: normal;
+  opacity: 0.5;
+}
+
+.project-info__link{
+  text-decoration: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: bold;
+  font-size: 12px;
+  line-height: 16px;
+  margin-top: 146px;
+  width: 129px;
+  height: 36px;
+  background-color: #073042;
+  color: #FFFFFF;
+  border: 1px solid #FFFFFF;
+  border-radius: 3px;
+}
+
+.project-info__link:hover{
+  animation-duration: 1s;
+  animation-name: hover-button-2;
+  animation-fill-mode: both;
+  cursor: pointer;
+}
+
+.project-info__logo{
+  margin-top: 183px;
+  margin-right: 70px;
+  width: 310px;
+  height: 310px;
+}
+
+@media screen and (max-width: 1100px){
+  .project-info{
+    flex-direction: column-reverse;
+    justify-content: center;
+    align-items:center;
+    padding-top: 140px;
+  }
+  
+  .project-info__logo{
+    width: 310px;
+    margin: 154px 0 0 0;
+  }
+
+  .project-info__info-block{
+    align-items: center;
+    margin: 48px 0 0 0;
+  }
+
+  .project-info__title{
+    text-align: center;
+    margin: 0 44px;
+    font-size: 40px;
+  }
+
+  .project-info__subtitle{
+    text-align: center;
+    margin-top: 22px;
+    font-size: 13px;
+  }
+
+  .project-info__link{
+    margin-top: 92px;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .project-info{
+    padding-top: 70px;
+    padding-bottom: 30px;
+  }
+  .project-info__logo{
+    width: 210px;
+    height: 210px;
+  }
+  .project-info__info-block{
+    margin: 44px 0 0 0;
+  }
+  .project-info__title{
+    margin: 0 10px 0 10px;
+    font-size: 30px;
+  }
+  .project-info__subtitle{
+    width: 100%;
+    margin: 24px 10px 0;
+  }
+}

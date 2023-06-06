@@ -1,0 +1,177 @@
+.register{
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+}
+
+.register__logo{
+  padding-right: 360px;
+  margin-top: 70px;
+  width: 38px;
+}
+
+.register__greetings{
+  width: 396px;
+  margin: 40px 0 0 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: bold;
+  font-size: 24px;
+  line-height: 29px;
+}
+
+.register__form{
+  width: 396px;
+  margin: 40px 0 0 0;
+}
+
+.register__input-block{
+  margin-top: 24px;
+}
+
+.register__input-block:first-child{
+  margin-top: 0;
+}
+
+.register__text{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 10px;
+  line-height: 12px;
+  color: #A0A0A0;
+}
+
+.register__text:first-child{
+  margin-top: 0;
+}
+
+.register__input{
+  height: 30px;
+  width: 100%;
+  margin: 5px 0 0 0;
+  border: none;
+  border-bottom: 1px #E8E8E8 solid;
+  outline: none;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.register__input_error{
+  color: #FF3055;
+  border-color: #FF3055;
+}
+
+.register__input:focus{
+  border-color: #3456F3;
+  color: black;
+}
+
+.register__button-registration{
+  width: 100%;
+  height: 45px;
+  margin-top: 130px;
+  background: #3456F3;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.register__button-registration:hover{
+  cursor: pointer;
+  opacity: 0.9;
+}
+
+.register__block{
+  margin-top: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.register__text-already-register{
+  margin-right: 6px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #A0A0A0;
+}
+
+.register__button-enter{
+  border: none;
+  background-color: white;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 14px;
+  line-height: 17px;
+  color: #3456F3;
+  text-decoration: none;
+}
+
+.register__button-enter:hover{
+  cursor: pointer;
+  opacity: 0.8;
+}
+
+.register__error{
+  width: 100%;
+  margin-top: 6px;
+  color:#FF3055;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 10px;
+  line-height: 12px;
+  letter-spacing: 0em;
+  text-align: left;
+}
+
+@media screen and (max-width: 1000px){
+  .register__logo{
+    margin-top: 232px;
+  }
+  .register__form{
+    margin-top: 40px;
+  }
+}
+
+@media screen and (max-width: 500px){
+  .register__logo{
+    margin-top: 56px;
+    padding: 0;
+  }
+  .register__greetings{
+    text-align: center;
+    width: 100%;
+  }
+  .register__form{
+    margin: 80px 30px 0;
+    width: 80%;
+  }
+  .register__button-registration{
+    margin-top: 260px;
+  }
+  .register__text-already-register{
+    font-size: 12px;
+  }
+  .register__button-enter{
+    font-size: 12px;
+  }
+}
+
+@media screen and (max-height: 750px){
+  .register__button-registration{
+    margin-top: 90px;
+  }
+}

@@ -1,1 +1,1 @@
-# movies-explorer-frontend
+ССылка на макет: https://disk.yandex.ru/d/vfArO_loct8n2Q
