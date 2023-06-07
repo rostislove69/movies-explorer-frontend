@@ -3,7 +3,7 @@ import Promo from "./Promo/Promo";
 import StudentInfo from "./StudentInfo/StudentInfo";
 import Techs from "./Techs/Techs";
 
-function Main(){
+function Landing(){
   return(
     <>
       <Promo />
@@ -14,4 +14,4 @@ function Main(){
   )
 }
 
-export default Main;
+export default Landing;

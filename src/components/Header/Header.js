@@ -20,8 +20,6 @@ function Header(props) {
     };
   }, [props.isOpen]);
 
-  const [isLogged, setIsLogged] = useState(false);
-
   const location = useLocation();
   const currentPath = location.pathname;
   const mainPageButtonsStyle =
@@ -45,7 +43,7 @@ function Header(props) {
       <Link to="/" onClick={props.isEnterToMainPage}>
         <img src={Logo} className="header__logo" alt="Логотип" />
       </Link>
-      <nav className={`${isLogged ? "header__buttons-block" : "header__buttons-block_hide"}`}>
+      <nav className={`${currentPath === "/" ? "header__buttons-block_hide" : "header__buttons-block"}`}>
         <NavLink
           to="/movies"
           className={({ isActive }) =>
@@ -70,13 +68,13 @@ function Header(props) {
       <Link
         to="/profile"
         onClick={props.isExitFromMainPage}
-        className={`${isLogged ? "header__account-button" : "header__account-button_hide"}`}
+        className={`${currentPath === "/" ? "header__account-button_hide" : "header__account-button" }`}
       >
         Аккаунт
       </Link>
       <button
         onClick={props.isClick}
-        className={`${isLogged ? "header__burger-menu" : "header__burger-menu_hide"} ${mainPageBurgerMenuStyle}`}
+        className={`${currentPath === "/" ? "header__burger-menu_hide" : "header__burger-menu" } ${mainPageBurgerMenuStyle}`}
       ></button>
       <div
         className={`header__menu ${props.isOpen ? "header__menu_active" : ""}`}
@@ -128,7 +126,7 @@ function Header(props) {
           </Link>
         </nav>
       </div>
-      <div className="header__buttons-not-auth">
+      <div className={`${currentPath === "/" ? "header__buttons-not-auth" : "header__buttons-not-auth_hide" }`}>
         <Link to="/signup" className="header__registration">Регистрация</Link>
         <Link to="/signin" className="header__enter">Войти</Link>
       </div>

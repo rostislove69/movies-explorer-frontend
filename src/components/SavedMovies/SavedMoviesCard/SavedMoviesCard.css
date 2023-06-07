@@ -42,7 +42,7 @@
 }
 
 .elements__film-name{
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 500;
   font-size: 13px;
@@ -50,7 +50,7 @@
 }
 
 .elements__film-duration{
-  font-family: 'Inter';
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
   font-size: 11px;

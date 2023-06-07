@@ -82,6 +82,16 @@
   height: 310px;
 }
 
+@media screen and (min-width: 1850px){
+  .project-info__info-block{
+    margin-left: auto;
+    padding-right: 800px;
+  }
+  .project-info__logo{
+    margin-right: auto;
+  }
+}
+
 @media screen and (max-width: 1100px){
   .project-info{
     flex-direction: column-reverse;

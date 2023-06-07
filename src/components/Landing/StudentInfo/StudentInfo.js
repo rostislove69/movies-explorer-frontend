@@ -53,12 +53,12 @@ function StudentInfo() {
             rel="noreferrer"
           >
             Статичный сайт
+            <img
+              className="student-info__portfolio-element-icon"
+              src={Arrow}
+              alt="Стрелка перехода"
+            />
           </a>
-          <img
-            className="student-info__portfolio-element-icon"
-            src={Arrow}
-            alt="Стрелка перехода"
-          />
         </li>
         <li className="student-info__portfolio-element">
           <a
@@ -68,12 +68,12 @@ function StudentInfo() {
             rel="noreferrer"
           >
             Адаптивный сайт
+            <img
+              className="student-info__portfolio-element-icon"
+              src={Arrow}
+              alt="Стрелка перехода"
+            />
           </a>
-          <img
-            className="student-info__portfolio-element-icon"
-            src={Arrow}
-            alt="Стрелка перехода"
-          />
         </li>
         <li className="student-info__portfolio-element">
           <a
@@ -83,12 +83,12 @@ function StudentInfo() {
             rel="noreferrer"
           >
             Одностраничное приложение
+            <img
+              className="student-info__portfolio-element-icon"
+              src={Arrow}
+              alt="Стрелка перехода"
+            />
           </a>
-          <img
-            className="student-info__portfolio-element-icon"
-            src={Arrow}
-            alt="Стрелка перехода"
-          />
         </li>
       </ul>
     </section>

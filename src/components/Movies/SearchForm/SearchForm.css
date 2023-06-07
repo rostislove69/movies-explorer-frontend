@@ -33,6 +33,10 @@
   border-color: #3456f3;
 }
 
+.search__search-input:hover{
+  border-color: #3456f3;
+}
+
 .search__submit-button{
   border: none;
   background-color: white;
@@ -123,6 +127,13 @@
 
 .search__shortfilms-tumbler.round:before {
   border-radius: 50%;
+}
+
+@media screen and (min-width: 1850px){
+  .search{
+    max-width: 1750px;
+    margin: 70px auto 0;
+  }
 }
 
 @media screen and (max-width: 1100px){
