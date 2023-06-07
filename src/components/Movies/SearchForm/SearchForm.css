@@ -1,0 +1,174 @@
+.search{
+  margin: 70px 70px 0;
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  border-bottom: 1px rgba(170, 170, 170, 0.2) solid;
+
+}
+
+.search__form{
+  position: relative;
+  margin: 80px 63px 94px 0;
+  width: 100%;
+}
+
+.search__search-input{
+  width: 100%;
+  height: 48px;
+  border: 1.5px #AAAAAA solid;
+  border-radius: 50px;
+  padding-left: 22px;
+  outline: none;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.search__search-input::placeholder{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-size: 14px;
+}
+
+.search__search-input:focus{
+  border-color: #3456f3;
+}
+
+.search__search-input:hover{
+  border-color: #3456f3;
+}
+
+.search__submit-button{
+  border: none;
+  background-color: white;
+  position: absolute;
+  top: 8px;
+  right: -13px;
+  overflow: hidden;
+}
+
+.search__submit-button:hover{
+  cursor: pointer;
+}
+
+.search__shortfilms-block{
+  display: flex;
+  align-items: center;
+}
+
+.search__shortfilms-text{
+  margin: 0 14px 0 0;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 18px;
+}
+
+.search__shortfilms-button {
+  position: relative;
+  display: inline-block;
+  width: 36px;
+  height: 20px;
+}
+
+.search__shortfilms-input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.search__shortfilms-input::placeholder{
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+}
+
+.search__shortfilms-tumbler {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: #EBEBEB;
+  ;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.search__shortfilms-tumbler:before {
+  position: absolute;
+  content: "";
+  height: 16px;
+  width: 16px;
+  left: 2px;
+  bottom: 2px;
+  background-color: grey;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.search__shortfilms-input:checked + .search__shortfilms-tumbler:before {
+  background-color: #2BE080;
+  ;
+}
+
+.search__shortfilms-input:focus + .search__shortfilms-tumbler {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+.search__shortfilms-input:checked + .search__shortfilms-tumbler:before {
+  -webkit-transform: translateX(15px);
+  -ms-transform: translateX(15px);
+  transform: translateX(16px);
+}
+
+.search__shortfilms-tumbler.round {
+  border-radius: 34px;
+}
+
+.search__shortfilms-tumbler.round:before {
+  border-radius: 50%;
+}
+
+@media screen and (min-width: 1850px){
+  .search{
+    max-width: 1750px;
+    margin: 70px auto 0;
+  }
+}
+
+@media screen and (max-width: 1100px){
+  .search{
+    margin-left: 30px;
+    margin-right: 55px;
+    flex-direction: column;
+    align-items: center;
+  }
+  .search__form{
+    margin: 60px 30px 38px 30px;
+  }
+  .search__submit-button{
+    right: 0;
+  }
+  .search__shortfilms-block{
+    margin-bottom: 68px;
+  }
+  .search__submit-button{
+    right: -13px;
+  }
+}
+
+@media screen and (max-width: 650px){
+  .search{
+    margin-left: 10px;
+    margin-right: 35px;
+  }
+  .search__form{
+    margin: 60px 0 45px;
+  }
+  .search__shortfilms-block{
+    margin-bottom: 44px;
+  }
+  .search__shortfilms-text{
+    font-size: 11px;
+  }
+}
