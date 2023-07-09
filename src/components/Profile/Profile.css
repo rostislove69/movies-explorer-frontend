@@ -41,6 +41,7 @@
 }
 
 .profile__input-name{
+  width: 70%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -53,6 +54,7 @@
 }
 
 .profile__input-email{
+  width: 70%;
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: 400;
@@ -63,7 +65,35 @@
   border: none;
 }
 
+.profile__error{
+  margin: 5px auto;
+  display: flex;
+  justify-content: center;
+  color: #FF3055;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+}
+
+.profile__api-error{
+  top: -50px;
+  left: calc(50% - 140px);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #FF3055;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 11px;
+  line-height: 13px;
+}
+
 .profile__button-edit{
+  position: relative;
   margin-top: 220px;
   margin-bottom: 16px;
   border: none;
@@ -75,9 +105,18 @@
   line-height: 16px;
 }
 
+.profile__button-edit_disabled{
+  color: gray;
+}
+
 .profile__button-edit:hover{
   cursor: pointer;
   opacity: 0.8;
+}
+
+.profile__button-edit_disabled:hover{
+  cursor: not-allowed;
+  opacity: 1;
 }
 
 .profile__button-exit{
@@ -116,7 +155,7 @@
 
 @media screen and (max-width: 650px){
   .profile{
-    margin: 40px 0 0;
+    margin: 120px 0 0;
   }
   .profile__name{
     font-weight: bold;

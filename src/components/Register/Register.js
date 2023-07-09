@@ -2,41 +2,29 @@ import "./Register.css";
 import Logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
+import Validation from "../../utils/Validation";
 
-function Register() {
-  const [name, setName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [errors, setErrors] = useState({});
-
-  const validateName = () => {
-    if (name.trim() === '') {
-      return 'Введите ваше имя';
-    }
-    return '';
-  };
-
-  const validateEmail = () => {
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      return 'Введите корректный адрес электронной почты';
-    }
-    return '';
-  };
-
-  const validatePassword = () => {
-    if (password.length < 6) {
-      return 'Пароль должен содержать не менее 6 символов';
-    }
-    return '';
-  };
+function Register(props) {
+  const { errors, setErrors, validateForm } = Validation();
+  const [name, setName] = useState("");
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
 
   const handleNameChange = (e) => {
     const value = e.target.value;
-    setName(value);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      name: value.trim() === '' ? '' : (value.length < 2 ? 'Имя должно содержать не менее 2 символов' : ''),
-    }));
+    const regex = /^[а-яА-Яa-zA-Z\s-]*$/;
+    if (regex.test(value)) {
+      setName(value);
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        name:
+          value.trim() === ""
+            ? ""
+            : value.length < 2
+            ? "Имя должно содержать не менее 2 символов"
+            : "",
+      }));
+    }
   };
 
   const handleEmailChange = (e) => {
@@ -44,7 +32,12 @@ function Register() {
     setEmail(value);
     setErrors((prevErrors) => ({
       ...prevErrors,
-      email: value.trim() === '' ? '' : (!/\S+@\S+\.\S+/.test(value) ? 'Введите корректный адрес электронной почты' : ''),
+      email:
+        value.trim() === ""
+          ? ""
+          : !/^[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}$/.test(value)
+          ? "Введите корректный адрес электронной почты"
+          : "",
     }));
   };
 
@@ -53,32 +46,32 @@ function Register() {
     setPassword(value);
     setErrors((prevErrors) => ({
       ...prevErrors,
-      password: value.trim() === '' ? '' : (value.length < 6 ? 'Пароль должен содержать не менее 6 символов' : ''),
+      password:
+        value.trim() === ""
+          ? ""
+          : value.length < 6
+          ? "Пароль должен содержать не менее 6 символов"
+          : "",
     }));
   };
 
-
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newErrors = {
-      name: validateName(),
-      email: validateEmail(),
-      password: validatePassword(),
-    };
-
-    if (Object.values(newErrors).every((error) => error === '')) {
-      // Отправка данных формы или другие действия
-      console.log('Форма успешно отправлена');
-      // Сброс значений инпутов и ошибок
-      setName('');
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (validateForm(name, email, password)) {
+      props.onRegister(name, email, password);
       setEmail('');
-      setPassword('');
-      setErrors({});
-    } else {
-      setErrors(newErrors);
+      setName('');
+      setPassword('')
     }
+  };
+
+  const isFormValid = () => {
+    return (
+      Object.values(errors).every((error) => error === "") &&
+      name !== "" &&
+      email !== "" &&
+      password !== ""
+    );
   };
 
   return (
@@ -91,12 +84,15 @@ function Register() {
         <div className="register__input-block">
           <label className="register__text">Имя</label>
           <input
-            className={`register__input ${errors.name ? 'register__input_error' : ''}`}
+            className={`register__input ${
+              errors.name ? "register__input_error" : ""
+            }`}
             type="text"
             id="name"
             name="name"
             value={name}
             onChange={handleNameChange}
+            pattern="[а-яА-Яa-zA-Z\s\-]+"
           />
           {errors.name && (
             <span className="register__error">{errors.name}</span>
@@ -105,7 +101,9 @@ function Register() {
         <div className="register__input-block">
           <label className="register__text">E-mail</label>
           <input
-            className={`register__input ${errors.email ? 'register__input_error' : ''}`}
+            className={`register__input ${
+              errors.email ? "register__input_error" : ""
+            }`}
             type="email"
             id="email"
             name="email"
@@ -119,7 +117,9 @@ function Register() {
         <div className="register__input-block">
           <label className="register__text">Пароль</label>
           <input
-            className={`register__input ${errors.password ? 'register__input_error' : ''}`}
+            className={`register__input ${
+              errors.password ? "register__input_error" : ""
+            }`}
             type="password"
             id="password"
             name="password"
@@ -131,9 +131,15 @@ function Register() {
           )}
         </div>
         <button
-          className="register__button-registration"
+          className={`${
+            !isFormValid()
+              ? "register__button-registration_disabled"
+              : "register__button-registration"
+          }`}
           type="submit"
+          disabled={!isFormValid()}
         >
+          <span className="register__register-error">{props.error}</span>
           Зарегистрироваться
         </button>
       </form>
