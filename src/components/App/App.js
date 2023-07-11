@@ -143,6 +143,7 @@ function App() {
     setLoggedIn(false);
     setMovies([]);
     navigate("/");
+    window.location.reload();
   }
 
   function tokenCheck() {
