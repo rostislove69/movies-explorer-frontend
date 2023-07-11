@@ -7,10 +7,10 @@ function SearchForm(props) {
   const location = useLocation();
   const currentPath = location.pathname;
   const [query, setQuery] = useState(
-    currentPath === "/movies" ? props.query : props.savedQuery
+    currentPath === "/movies" ? props.query : ""
   );
   const [isChecked, setIsChecked] = useState(
-    currentPath === "/movies" ? props.isChecked : props.savedIsChecked
+    currentPath === "/movies" ? props.isChecked : false
   );
 
   const handleSearch = (evt) => {

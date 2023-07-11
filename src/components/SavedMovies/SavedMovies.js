@@ -3,8 +3,6 @@ import SearchForm from "../SearchForm/SearchForm";
 import Preloader from "../Preloader/Preloader";
 
 function SavedMovies(props) {
-  const lastFoundSavedMovies = localStorage.getItem("lastFoundSavedMovies");
-  const savedMovies = localStorage.getItem("savedMovies");
   return (
     <>
       <SearchForm
@@ -17,7 +15,7 @@ function SavedMovies(props) {
       />
       {props.isLoading ? (
         <Preloader />
-      ) : lastFoundSavedMovies !== null &&  lastFoundSavedMovies === "[]" && savedMovies !== "[]" ? (
+      ) : props.isSavedMoviesChecked !== false  ||  props.isSavedMoviesQuery !== "" ? (
         <div className="movies__title">По Вашему запросу ничего не найдено.</div>
       ) : props.savedMovies.length < 1 ? (
         <div className="movies__title">У Вас нет сохраненных фильмов.</div>

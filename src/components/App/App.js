@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import mainApi from "../../utils/MainApi";
@@ -15,6 +15,8 @@ import Footer from "../Footer/Footer";
 
 function App() {
   const navigate = useNavigate();
+  const location = useLocation();
+  const currentPath = location.pathname;
 
   const [loggedIn, setLoggedIn] = useState(false);
   const [currentUser, setCurrentUser] = useState({
@@ -30,16 +32,8 @@ function App() {
   const [query, setQuery] = useState(
     localStorage.getItem("query") !== null ? localStorage.getItem("query") : ""
   );
-  const [isSavedMoviesQuery, setIsSavedMoviesQuery] = useState(
-    localStorage.getItem("querySavedMovies") !== null
-      ? localStorage.getItem("querySavedMovies")
-      : ""
-  );
-  const [isSavedMoviesChecked, setIsSavedMoviesChecked] = useState(
-    localStorage.getItem("checkboxStatusSavedMovies") !== null
-      ? JSON.parse(localStorage.getItem("checkboxStatusSavedMovies"))
-      : false
-  );
+  const [isSavedMoviesQuery, setIsSavedMoviesQuery] = useState("");
+  const [isSavedMoviesChecked, setIsSavedMoviesChecked] = useState(false);
 
   const [movies, setMovies] = useState(
     localStorage.getItem("lastFoundMovies") !== null
@@ -48,7 +42,7 @@ function App() {
   );
   const [savedMovies, setSavedMovies] = useState(
     localStorage.getItem("savedMovies") !== null
-      ? JSON.parse(localStorage.getItem("lastFoundSavedMovies"))
+      ? localStorage.getItem("savedMovies")
       : []
   );
   const [isLoading, setIsLoading] = useState(false);
@@ -72,15 +66,20 @@ function App() {
             name: userData.name,
             _id: userData._id,
           });
-          const lastFoundMovies = localStorage.getItem("lastFoundSavedMovies");
-          if(lastFoundMovies === null){
             setSavedMovies(movies);
             localStorage.setItem("savedMovies", JSON.stringify(movies));
-          }
         })
         .catch((err) => console.log(err));
     }
   }, [loggedIn]);
+
+  useEffect(() => {
+    if (currentPath === "/movies") {
+      setSavedMovies(JSON.parse(localStorage.getItem("savedMovies")));
+      setIsSavedMoviesChecked(false);
+      setIsSavedMoviesQuery("");
+    }
+  }, [currentPath]);
 
   useEffect(() => {
     const timeoutId = setTimeout(() => {
@@ -217,8 +216,6 @@ function App() {
     startPreloader();
     setIsSavedMoviesQuery(query);
     setIsSavedMoviesChecked(checkboxStatus);
-    localStorage.setItem("querySavedMovies", query);
-    localStorage.setItem("checkboxStatusSavedMovies", checkboxStatus);
     const moviesList = JSON.parse(localStorage.getItem("savedMovies"));
     if (checkboxStatus === true) {
       const shortMovies = moviesList.filter((e) =>
@@ -228,13 +225,11 @@ function App() {
         e.nameRU.toLowerCase().includes(query.toLowerCase()) ? e : null
       );
       setSavedMovies(searchMovie);
-      localStorage.setItem("lastFoundSavedMovies", JSON.stringify(searchMovie));
     } else {
       const searchMovie = moviesList.filter((e) =>
         e.nameRU.toLowerCase().includes(query.toLowerCase()) ? e : null
       );
       setSavedMovies(searchMovie);
-      localStorage.setItem("lastFoundSavedMovies", JSON.stringify(searchMovie));
     }
   }
 
@@ -248,11 +243,6 @@ function App() {
           "savedMovies",
           JSON.stringify(updatedSavedMovieList)
         );
-        if(isSavedMoviesQuery === "" && isSavedMoviesChecked === false){
-          const arr = JSON.parse(localStorage.getItem("lastFoundSavedMovies"));
-          arr.push(res);
-          localStorage.setItem("lastFoundSavedMovies", JSON.stringify(arr));
-        }
       })
       .catch((err) => console.log(err));
   }
@@ -272,14 +262,6 @@ function App() {
           "savedMovies",
           JSON.stringify(updatedSavedMovieList)
         );
-        const lastFoundSavedMoviesList = localStorage.getItem("lastFoundSavedMovies");
-        if(lastFoundSavedMoviesList !== null && lastFoundSavedMoviesList !== "[]"){
-          const updatedLastFoundSavedMoviesList = JSON.parse(lastFoundSavedMoviesList).filter(
-            (e) => e._id !== selectedMovie._id
-          );
-          localStorage.setItem("lastFoundSavedMovies", JSON.stringify(updatedLastFoundSavedMoviesList));
-        }
-        
       })
       .catch((err) => console.log(err));
   }
