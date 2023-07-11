@@ -1,7 +1,7 @@
 import "./Header.css";
 import Logo from "../../images/logo.svg";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 function Header(props) {
   useEffect(() => {
@@ -27,7 +27,7 @@ function Header(props) {
   const mainPageBurgerMenuStyle =
     currentPath === "/" ? "header__burger-menu_main-page" : "";
   const getHeaderHide = () => {
-    if (currentPath === "/signin" || currentPath === "/signup") {
+    if (!(currentPath === "/movies" || currentPath === "/saved-movies" || currentPath === "/profile" || currentPath === "/")) {
       return "header_hide";
     } else {
       return "";

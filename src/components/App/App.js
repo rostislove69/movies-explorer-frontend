@@ -1,5 +1,11 @@
 import { useEffect, useState } from "react";
-import { Routes, Route, useNavigate, useLocation } from "react-router-dom";
+import {
+  Routes,
+  Route,
+  useNavigate,
+  useLocation,
+  Navigate,
+} from "react-router-dom";
 import { CurrentUserContext } from "../../contexts/CurrentUserContext";
 import ProtectedRouteElement from "../ProtectedRoute/ProtectedRoute";
 import mainApi from "../../utils/MainApi";
@@ -12,13 +18,16 @@ import Profile from "../Profile/Profile";
 import Login from "../Login/Login";
 import Register from "../Register/Register";
 import Footer from "../Footer/Footer";
+import NotFound from "../NotFound/NotFound";
 
 function App() {
   const navigate = useNavigate();
   const location = useLocation();
   const currentPath = location.pathname;
 
-  const [loggedIn, setLoggedIn] = useState(false);
+  const [loggedIn, setLoggedIn] = useState(
+    localStorage.getItem("jwt") !== null ? true : false
+  );
   const [currentUser, setCurrentUser] = useState({
     name: "",
     _id: "",
@@ -42,7 +51,7 @@ function App() {
   );
   const [savedMovies, setSavedMovies] = useState(
     localStorage.getItem("savedMovies") !== null
-      ? localStorage.getItem("savedMovies")
+      ? JSON.parse(localStorage.getItem("savedMovies"))
       : []
   );
   const [isLoading, setIsLoading] = useState(false);
@@ -54,7 +63,9 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    tokenCheck();
+    if (!loggedIn) {
+      tokenCheck();
+    }
   }, []);
 
   useEffect(() => {
@@ -66,8 +77,8 @@ function App() {
             name: userData.name,
             _id: userData._id,
           });
-            setSavedMovies(movies);
-            localStorage.setItem("savedMovies", JSON.stringify(movies));
+          setSavedMovies(movies);
+          localStorage.setItem("savedMovies", JSON.stringify(movies));
         })
         .catch((err) => console.log(err));
     }
@@ -111,14 +122,12 @@ function App() {
     mainApi
       .createUser(name, email, password)
       .then(() => {
-        mainApi
-          .login(email, password)
-          .then((data) => {
-            localStorage.setItem("jwt", data.token);
-            setCurrentUser({ ...currentUser, email: email });
-            setLoggedIn(true);
-            navigate("/movies");
-          })
+        mainApi.login(email, password).then((data) => {
+          localStorage.setItem("jwt", data.token);
+          setCurrentUser({ ...currentUser, email: email });
+          setLoggedIn(true);
+          navigate("/movies");
+        });
       })
       .catch((err) => setRegistrationError(err));
   }
@@ -142,7 +151,7 @@ function App() {
       .updateUser(data)
       .then((res) => {
         setCurrentUser(res);
-        setProfileMessage("Данные успешно обновлены!")
+        setProfileMessage("Данные успешно обновлены!");
       })
       .catch((err) => setProfileError(err));
   }
@@ -249,7 +258,9 @@ function App() {
 
   function handleDeleteMovie(data) {
     const selectedMovie = savedMovies.find(
-      (e) => e.movieId === (data.movieId || data.id) && e.owner._id === currentUser._id
+      (e) =>
+        e.movieId === (data.movieId || data.id) &&
+        e.owner._id === currentUser._id
     );
     mainApi
       .deleteMovie(selectedMovie._id)
@@ -325,14 +336,28 @@ function App() {
           />
           <Route
             path="/signin"
-            element={<Login handleLogin={handleLogin} error={loginError} />}
+            element={
+              loggedIn ? (
+                <Navigate replace to={"/movies"} />
+              ) : (
+                <Login handleLogin={handleLogin} error={loginError} />
+              )
+            }
           />
           <Route
             path="/signup"
             element={
-              <Register onRegister={handleRegister} error={registrationError} />
+              loggedIn ? (
+                <Navigate replace to={"/movies"} />
+              ) : (
+                <Register
+                  onRegister={handleRegister}
+                  error={registrationError}
+                />
+              )
             }
           />
+          <Route path={"*"} element={<NotFound />} />
         </Routes>
       </main>
       <Footer />
