@@ -110,7 +110,14 @@ function App() {
     mainApi
       .createUser(name, email, password)
       .then(() => {
-        navigate("/signin");
+        mainApi
+          .login(email, password)
+          .then((data) => {
+            localStorage.setItem("jwt", data.token);
+            setCurrentUser({ ...currentUser, email: email });
+            setLoggedIn(true);
+            navigate("/movies");
+          })
       })
       .catch((err) => setRegistrationError(err));
   }
