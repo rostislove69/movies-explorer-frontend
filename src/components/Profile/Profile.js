@@ -95,6 +95,7 @@ function Profile(props) {
         >
           Редактировать
           <p className="profile__api-error">{props.profileError}</p>
+          <p className="profile__api-success">{props.profileMessage}</p>
         </button>
       </form>
       <button className="profile__button-exit" onClick={props.onLogout}>

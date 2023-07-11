@@ -79,7 +79,7 @@
 
 .profile__api-error{
   top: -50px;
-  left: calc(50% - 140px);
+  left: calc(50% - 185px);
   position: absolute;
   display: flex;
   justify-content: center;
@@ -88,7 +88,22 @@
   font-family: 'Inter', Arial, Helvetica, sans-serif;
   font-style: normal;
   font-weight: normal;
-  font-size: 11px;
+  font-size: 15px;
+  line-height: 13px;
+}
+
+.profile__api-success{
+  top: -50px;
+  left: calc(50% - 110px);
+  position: absolute;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #9ACD32;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 15px;
   line-height: 13px;
 }
 
@@ -169,6 +184,14 @@
   }
   .profile__button-edit{
     margin: 379px 0 16px;
+  }
+  .profile__api-error{
+    font-size: 11px;
+    left: calc(50% - 130px);
+  }
+  .profile__api-success{
+    font-size: 11px;
+    left: calc(50% - 80px);
   }
 }
 

@@ -26,6 +26,7 @@ function App() {
   const [loginError, setLoginError] = useState("");
   const [registrationError, setRegistrationError] = useState("");
   const [profileError, setProfileError] = useState("");
+  const [profileMessage, setProfileMessage] = useState("");
   const [query, setQuery] = useState(
     localStorage.getItem("query") !== null ? localStorage.getItem("query") : ""
   );
@@ -86,12 +87,13 @@ function App() {
       setLoginError("");
       setRegistrationError("");
       setProfileError("");
+      setProfileMessage("");
     }, 2000);
 
     return () => {
       clearTimeout(timeoutId);
     };
-  }, [loginError, registrationError, profileError]);
+  }, [loginError, registrationError, profileError, profileMessage]);
 
   function startPreloader() {
     setIsLoading(true);
@@ -141,6 +143,7 @@ function App() {
       .updateUser(data)
       .then((res) => {
         setCurrentUser(res);
+        setProfileMessage("Данные успешно обновлены!")
       })
       .catch((err) => setProfileError(err));
   }
@@ -333,6 +336,7 @@ function App() {
                 onUpdateUser={handleUpdateUser}
                 onLogout={handleLogout}
                 profileError={profileError}
+                profileMessage={profileMessage}
               />
             }
           />
