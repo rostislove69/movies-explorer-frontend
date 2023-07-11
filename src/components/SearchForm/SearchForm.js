@@ -25,7 +25,7 @@ function SearchForm(props) {
   };
 
   const handleInputChange = (evt) => {
-    setQuery(evt.terget.value);
+    setQuery(evt.target.value);
   };
 
   return (
@@ -33,14 +33,13 @@ function SearchForm(props) {
       <form className="search__form" onSubmit={handleSearch}>
         <input
           className="search__search-input"
-          value={query || ""}
           onChange={handleInputChange}
           type="text"
           placeholder="Фильм"
           name="film"
           maxLength="80"
           autoComplete="off"
-          pattern="[а-яА-Яa-zA-Z\s\-]+"
+          value={query || ""}
         />
         <button className="search__submit-button" type="submit">
           <img src={Find} alt="Иконка поиска" />
