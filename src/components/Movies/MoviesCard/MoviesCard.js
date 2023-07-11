@@ -11,6 +11,11 @@ function MoviesCard(props) {
     props.saveMovie(props.card);
     setIsAdded(true);
   }
+
+  function handleCardDelete(){
+    props.deleteMovie(props.card);
+    setIsAdded(false);
+  }
   
   function click(){
     window.open(props.trailer);
@@ -36,6 +41,7 @@ function MoviesCard(props) {
           className="elements__logo-saved"
           src={Save}
           alt="Добавлено в сохраненные"
+          onClick={handleCardDelete}
           />
         )}
       </div>

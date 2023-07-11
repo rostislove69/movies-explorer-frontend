@@ -64,6 +64,14 @@
   right: 14px;
 }
 
+.elements__logo-saved:hover{
+  position: absolute;
+  top: 14px;
+  right: 14px;
+  opacity: 0.8;
+  cursor: pointer;
+}
+
 .elements__logo-saved_hidden{
   display: none;
 }

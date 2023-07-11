@@ -26,6 +26,7 @@ function Movies(props) {
         <MoviesCardList
           movies={props.movies}
           saveMovie={props.saveMovie}
+          deleteMovie={props.deleteMovie}
           savedMovies={props.savedMovies}
         />
       )}

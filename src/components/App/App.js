@@ -249,7 +249,7 @@ function App() {
 
   function handleDeleteMovie(data) {
     const selectedMovie = savedMovies.find(
-      (e) => e.movieId === data.movieId && e.owner._id === currentUser._id
+      (e) => e.movieId === (data.movieId || data.id) && e.owner._id === currentUser._id
     );
     mainApi
       .deleteMovie(selectedMovie._id)
@@ -288,6 +288,7 @@ function App() {
                 movies={movies}
                 onSearchFilms={handleSearchFilms}
                 saveMovie={handleSaveMovie}
+                deleteMovie={handleDeleteMovie}
                 savedMovies={savedMovies}
                 isChecked={isChecked}
                 query={query}

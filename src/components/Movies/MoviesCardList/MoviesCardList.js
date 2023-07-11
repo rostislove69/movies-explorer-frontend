@@ -48,6 +48,7 @@ function MoviesCardList(props) {
             duration={movie.duration}
             image={movie.image.url}
             saveMovie={props.saveMovie}
+            deleteMovie={props.deleteMovie}
             savedMovies={props.savedMovies}
           />
         ))}
