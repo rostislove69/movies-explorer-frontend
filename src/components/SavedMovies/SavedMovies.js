@@ -15,7 +15,7 @@ function SavedMovies(props) {
       />
       {props.isLoading ? (
         <Preloader />
-      ) : props.isSavedMoviesChecked !== false  ||  props.isSavedMoviesQuery !== "" ? (
+      ) : (props.isSavedMoviesChecked !== false  ||  props.isSavedMoviesQuery !== "") && props.savedMovies.length < 1 ? (
         <div className="movies__title">По Вашему запросу ничего не найдено.</div>
       ) : props.savedMovies.length < 1 ? (
         <div className="movies__title">У Вас нет сохраненных фильмов.</div>
