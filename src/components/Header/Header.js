@@ -1,7 +1,7 @@
 import "./Header.css";
 import Logo from "../../images/logo.svg";
 import { NavLink, Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 
 function Header(props) {
   useEffect(() => {
@@ -27,7 +27,7 @@ function Header(props) {
   const mainPageBurgerMenuStyle =
     currentPath === "/" ? "header__burger-menu_main-page" : "";
   const getHeaderHide = () => {
-    if (currentPath === "/signin" || currentPath === "/signup") {
+    if (!(currentPath === "/movies" || currentPath === "/saved-movies" || currentPath === "/profile" || currentPath === "/")) {
       return "header_hide";
     } else {
       return "";
@@ -43,7 +43,7 @@ function Header(props) {
       <Link to="/" onClick={props.isEnterToMainPage}>
         <img src={Logo} className="header__logo" alt="Логотип" />
       </Link>
-      <nav className={`${currentPath === "/" ? "header__buttons-block_hide" : "header__buttons-block"}`}>
+      <nav className={`${props.loggedIn === false ? "header__buttons-block_hide" : "header__buttons-block"}`}>
         <NavLink
           to="/movies"
           className={({ isActive }) =>
@@ -68,13 +68,13 @@ function Header(props) {
       <Link
         to="/profile"
         onClick={props.isExitFromMainPage}
-        className={`${currentPath === "/" ? "header__account-button_hide" : "header__account-button" }`}
+        className={`${props.loggedIn === false ? "header__account-button_hide" : "header__account-button" }`}
       >
         Аккаунт
       </Link>
       <button
         onClick={props.isClick}
-        className={`${currentPath === "/" ? "header__burger-menu_hide" : "header__burger-menu" } ${mainPageBurgerMenuStyle}`}
+        className={`${props.loggedIn === false ? "header__burger-menu_hide" : "header__burger-menu" } ${mainPageBurgerMenuStyle}`}
       ></button>
       <div
         className={`header__menu ${props.isOpen ? "header__menu_active" : ""}`}
@@ -126,7 +126,7 @@ function Header(props) {
           </Link>
         </nav>
       </div>
-      <div className={`${currentPath === "/" ? "header__buttons-not-auth" : "header__buttons-not-auth_hide" }`}>
+      <div className={`${props.loggedIn === false ? "header__buttons-not-auth" : "header__buttons-not-auth_hide" }`}>
         <Link to="/signup" className="header__registration">Регистрация</Link>
         <Link to="/signin" className="header__enter">Войти</Link>
       </div>

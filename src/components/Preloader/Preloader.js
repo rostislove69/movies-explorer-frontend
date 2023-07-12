@@ -3,7 +3,7 @@ import './Preloader.css'
 
 const Preloader = () => {
     return (
-        <div className="preloader preloader_hide">
+        <div className="preloader preloader">
             <div className="preloader__container">
                 <span className="preloader__round"></span>
             </div>
