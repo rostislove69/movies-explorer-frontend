@@ -235,7 +235,6 @@ function App() {
   }
 
   function handleSaveMovie(data) {
-    setIsLoading(true);
     mainApi
       .saveMovie(data)
       .then((res) => {
@@ -247,11 +246,10 @@ function App() {
         );
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
   }
 
   function handleDeleteMovie(data) {
-    setIsLoading(true);
+    const savedLocalMoviesList = JSON.parse(localStorage.getItem("savedMovies"));
     const selectedMovie = savedMovies.find(
       (e) =>
         e.movieId === (data.movieId || data.id) &&
@@ -264,13 +262,10 @@ function App() {
           (e) => e._id !== selectedMovie._id
         );
         setSavedMovies(updatedSavedMovieList);
-        localStorage.setItem(
-          "savedMovies",
-          JSON.stringify(updatedSavedMovieList)
-        );
+        const updatedLocalMoviesList = savedLocalMoviesList.filter((e) => e._id !== selectedMovie._id)
+        localStorage.setItem("savedMovies", JSON.stringify(updatedLocalMoviesList));
       })
       .catch((err) => console.log(err))
-      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -336,7 +331,7 @@ function App() {
             path="/signin"
             element={
               loggedIn ? (
-                <Navigate replace to={"/movies"} />
+                <Navigate replace to={"/"} />
               ) : (
                 <Login
                   handleLogin={handleLogin}
@@ -350,7 +345,7 @@ function App() {
             path="/signup"
             element={
               loggedIn ? (
-                <Navigate replace to={"/movies"} />
+                <Navigate replace to={"/"} />
               ) : (
                 <Register
                   onRegister={handleRegister}

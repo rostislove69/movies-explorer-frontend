@@ -6,7 +6,7 @@ function MoviesCardList(props) {
   const currentWidth = window.innerWidth;
   const [quantity, setQuantity] = useState(0);
   useEffect(() => {
-    if(currentWidth > 899){
+    if(currentWidth >= 900){
       if (quantity < 12){
         setQuantity(12);
         return;
@@ -18,7 +18,7 @@ function MoviesCardList(props) {
       return;
       }
     }
-    if(currentWidth < 481){
+    if(currentWidth <= 480){
       if (quantity < 5){
       setQuantity(5);
       return;
@@ -27,11 +27,14 @@ function MoviesCardList(props) {
   }, [currentWidth]);
 
   function loadMore(){
-    if(currentWidth > 899){
+    if(currentWidth >= 900 && currentWidth < 1500){
       const newQuantity = quantity + 3;
       setQuantity(newQuantity);
-    } else {
+    } else if (currentWidth < 900) {
       const newQuantity = quantity + 2;
+      setQuantity(newQuantity);
+    } else if (currentWidth >= 1500){
+      const newQuantity = quantity + 4;
       setQuantity(newQuantity);
     }
   };
