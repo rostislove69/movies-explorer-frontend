@@ -12,6 +12,10 @@ function Profile(props) {
 
   useEffect(() => {
     setIsDataChanged(name !== currentUser.name || email !== currentUser.email);
+    if(name === undefined || email === undefined){
+      setEmail(currentUser.email);
+    setName(currentUser.name);
+    }
   }, [name, email, currentUser]);
 
   function handleNameChange(evt) {

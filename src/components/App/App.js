@@ -28,11 +28,7 @@ function App() {
   const [loggedIn, setLoggedIn] = useState(
     localStorage.getItem("jwt") !== null ? true : false
   );
-  const [currentUser, setCurrentUser] = useState({
-    name: "",
-    _id: "",
-    email: "",
-  });
+  const [currentUser, setCurrentUser] = useState({});
   const [isOpenBurgerMenu, setIsOpenBurgerMenu] = useState(false);
   const [loginError, setLoginError] = useState("");
   const [registrationError, setRegistrationError] = useState("");
@@ -63,25 +59,15 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-    if (!loggedIn) {
-      tokenCheck();
-    }
-  }, []);
-
-  useEffect(() => {
-    if (loggedIn) {
-      Promise.all([mainApi.getUserInfo(), mainApi.getSavedMovies()])
-        .then(([userData, movies]) => {
-          setCurrentUser({
-            ...currentUser,
-            name: userData.name,
-            _id: userData._id,
-          });
-          setSavedMovies(movies);
-          localStorage.setItem("savedMovies", JSON.stringify(movies));
-        })
-        .catch((err) => console.log(err));
-    }
+      if (loggedIn) {
+        tokenCheck();
+        mainApi.getSavedMovies()
+          .then((res) => {
+            setSavedMovies(res);
+            localStorage.setItem("savedMovies", JSON.stringify(res));
+          })
+          .catch((err) => console.log(err));
+      }
   }, [loggedIn]);
 
   useEffect(() => {
@@ -170,9 +156,8 @@ function App() {
       mainApi
         .tokenCheck(jwt)
         .then((res) => {
-          setCurrentUser({ ...currentUser, email: res.email });
+          setCurrentUser({email: res.email, name: res.name, _id: res._id });
           setLoggedIn(true);
-          navigate("/movies");
         })
         .catch((err) => console.log(err));
     }
@@ -331,6 +316,7 @@ function App() {
                 onLogout={handleLogout}
                 profileError={profileError}
                 profileMessage={profileMessage}
+                currentUser={currentUser}
               />
             }
           />
