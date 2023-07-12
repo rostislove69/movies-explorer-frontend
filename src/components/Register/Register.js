@@ -70,7 +70,8 @@ function Register(props) {
       Object.values(errors).every((error) => error === "") &&
       name !== "" &&
       email !== "" &&
-      password !== ""
+      password !== "" &&
+      !props.isLoading
     );
   };
 
@@ -93,6 +94,7 @@ function Register(props) {
             value={name}
             onChange={handleNameChange}
             pattern="[а-яА-Яa-zA-Z\s\-]+"
+            disabled={props.isLoading}
           />
           {errors.name && (
             <span className="register__error">{errors.name}</span>
@@ -109,6 +111,7 @@ function Register(props) {
             name="email"
             value={email}
             onChange={handleEmailChange}
+            disabled={props.isLoading}
           />
           {errors.email && (
             <span className="register__error">{errors.email}</span>
@@ -125,6 +128,7 @@ function Register(props) {
             name="password"
             value={password}
             onChange={handlePasswordChange}
+            disabled={props.isLoading}
           />
           {errors.password && (
             <span className="register__error">{errors.password}</span>

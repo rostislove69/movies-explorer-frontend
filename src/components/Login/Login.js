@@ -53,7 +53,8 @@ function Login(props) {
     return (
       Object.values(errors).every((error) => error === "") &&
       email !== "" &&
-      password !== ""
+      password !== "" &&
+      !props.isLoading
     );
   };
 
@@ -75,6 +76,7 @@ function Login(props) {
             name="email"
             value={email}
             onChange={handleEmailChange}
+            disabled={props.isLoading}
           />
           {errors.email && <span className="login__error">{errors.email}</span>}
         </div>
@@ -89,6 +91,7 @@ function Login(props) {
             name="password"
             value={password}
             onChange={handlePasswordChange}
+            disabled={props.isLoading}
           />
           {errors.password && (
             <span className="login__error">{errors.password}</span>

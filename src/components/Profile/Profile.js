@@ -60,7 +60,7 @@ function Profile(props) {
 
   const isFormValid = () => {
     const { email, name } = errors;
-    return !(email || name) && isDataChanged;
+    return !(email || name) && isDataChanged && !props.isLoading;
   };
 
   return (
@@ -77,6 +77,7 @@ function Profile(props) {
             name="name"
             pattern="[а-яА-Яa-zA-Z\s\-]+"
             value={name || ""}
+            disabled={props.isLoading}
           />
         </div>
         {errors.name && <span className="profile__error">{errors.name}</span>}
@@ -89,6 +90,7 @@ function Profile(props) {
             placeholder="E-mail"
             name="email"
             value={email || ""}
+            disabled={props.isLoading}
           />
         </div>
         {errors.email && <span className="profile__error">{errors.email}</span>}

@@ -59,15 +59,16 @@ function App() {
   const [error, setError] = useState("");
 
   useEffect(() => {
-      if (loggedIn) {
-        tokenCheck();
-        mainApi.getSavedMovies()
-          .then((res) => {
-            setSavedMovies(res);
-            localStorage.setItem("savedMovies", JSON.stringify(res));
-          })
-          .catch((err) => console.log(err));
-      }
+    if (loggedIn) {
+      tokenCheck();
+      mainApi
+        .getSavedMovies()
+        .then((res) => {
+          setSavedMovies(res);
+          localStorage.setItem("savedMovies", JSON.stringify(res));
+        })
+        .catch((err) => console.log(err));
+    }
   }, [loggedIn]);
 
   useEffect(() => {
@@ -105,6 +106,7 @@ function App() {
   }
 
   function handleRegister(name, email, password) {
+    setIsLoading(true);
     mainApi
       .createUser(name, email, password)
       .then(() => {
@@ -115,10 +117,12 @@ function App() {
           navigate("/movies");
         });
       })
-      .catch((err) => setRegistrationError(err));
+      .catch((err) => setRegistrationError(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleLogin(email, password) {
+    setIsLoading(true);
     mainApi
       .login(email, password)
       .then((data) => {
@@ -129,17 +133,20 @@ function App() {
           navigate("/movies");
         }
       })
-      .catch((err) => setLoginError(err));
+      .catch((err) => setLoginError(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleUpdateUser(data) {
+    setIsLoading(true);
     mainApi
       .updateUser(data)
       .then((res) => {
         setCurrentUser(res);
         setProfileMessage("Данные успешно обновлены!");
       })
-      .catch((err) => setProfileError(err));
+      .catch((err) => setProfileError(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleLogout() {
@@ -156,7 +163,7 @@ function App() {
       mainApi
         .tokenCheck(jwt)
         .then((res) => {
-          setCurrentUser({email: res.email, name: res.name, _id: res._id });
+          setCurrentUser({ email: res.email, name: res.name, _id: res._id });
           setLoggedIn(true);
         })
         .catch((err) => console.log(err));
@@ -228,6 +235,7 @@ function App() {
   }
 
   function handleSaveMovie(data) {
+    setIsLoading(true);
     mainApi
       .saveMovie(data)
       .then((res) => {
@@ -238,10 +246,12 @@ function App() {
           JSON.stringify(updatedSavedMovieList)
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   function handleDeleteMovie(data) {
+    setIsLoading(true);
     const selectedMovie = savedMovies.find(
       (e) =>
         e.movieId === (data.movieId || data.id) &&
@@ -259,7 +269,8 @@ function App() {
           JSON.stringify(updatedSavedMovieList)
         );
       })
-      .catch((err) => console.log(err));
+      .catch((err) => console.log(err))
+      .finally(() => setIsLoading(false));
   }
 
   return (
@@ -310,6 +321,7 @@ function App() {
             path="/profile"
             element={
               <ProtectedRouteElement
+                isLoading={isLoading}
                 loggedIn={loggedIn}
                 element={Profile}
                 onUpdateUser={handleUpdateUser}
@@ -326,7 +338,11 @@ function App() {
               loggedIn ? (
                 <Navigate replace to={"/movies"} />
               ) : (
-                <Login handleLogin={handleLogin} error={loginError} />
+                <Login
+                  handleLogin={handleLogin}
+                  error={loginError}
+                  isLoading={isLoading}
+                />
               )
             }
           />
@@ -339,6 +355,7 @@ function App() {
                 <Register
                   onRegister={handleRegister}
                   error={registrationError}
+                  isLoading={isLoading}
                 />
               )
             }
