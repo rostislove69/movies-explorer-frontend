@@ -1,43 +1,27 @@
 import "./Login.css";
+import Validation from "../../utils/Validation";
 import Logo from "../../images/logo.svg";
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
-function Login() {
+function Login(props) {
+  const validation = Validation(); // Создаем единственный экземпляр хука Validation
+  const { errors, setErrors, validateForm } = validation; // Используем полученные значения из экземпляра
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [errors, setErrors] = useState({});
-
-  const validateEmail = () => {
-    if (!email) {
-      return null; // нет ошибки при пустом вводе
-    }
-
-    if (!/\S+@\S+\.\S+/.test(email)) {
-      return "Введите корректный адрес электронной почты";
-    }
-
-    return "";
-  };
-
-  const validatePassword = () => {
-    if (!password) {
-      return null; // нет ошибки при пустом вводе
-    }
-
-    if (password.length < 6) {
-      return "Пароль должен содержать не менее 6 символов";
-    }
-
-    return "";
-  };
 
   const handleEmailChange = (e) => {
     const value = e.target.value;
     setEmail(value);
     setErrors((prevErrors) => ({
       ...prevErrors,
-      email: value.trim() === '' ? '' : (!/\S+@\S+\.\S+/.test(value) ? 'Введите корректный адрес электронной почты' : ''),
+      email:
+        value.trim() === ""
+          ? ""
+          : !/\S+@\S+\.\S+/.test(value)
+          ? "Введите корректный адрес электронной почты"
+          : "",
     }));
   };
 
@@ -46,26 +30,32 @@ function Login() {
     setPassword(value);
     setErrors((prevErrors) => ({
       ...prevErrors,
-      password: value.trim() === '' ? '' : (value.length < 6 ? 'Пароль должен содержать не менее 6 символов' : ''),
+      password:
+        value.trim() === ""
+          ? ""
+          : value.length < 6
+          ? "Пароль должен содержать не менее 6 символов"
+          : "",
     }));
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-
-    const newErrors = {
-      email: validateEmail(),
-      password: validatePassword(),
-    };
-
-    if (Object.values(newErrors).every((error) => error === null || error === "")) {
-      console.log("Форма успешно отправлена");
+  const handleSubmit = (evt) => {
+    evt.preventDefault();
+    if (validateForm("", email, password)) {
+      props.handleLogin(email, password);
       setEmail("");
       setPassword("");
       setErrors({});
-    } else {
-      setErrors(newErrors);
     }
+  };
+
+  const isFormValid = () => {
+    return (
+      Object.values(errors).every((error) => error === "") &&
+      email !== "" &&
+      password !== "" &&
+      !props.isLoading
+    );
   };
 
   return (
@@ -77,31 +67,46 @@ function Login() {
       <form onSubmit={handleSubmit} className="login__form">
         <div className="login__input-block">
           <label className="login__text">E-mail</label>
-          <input 
-            className={`login__input ${errors.email ? 'login__input_error' : ''}`}
+          <input
+            className={`login__input ${
+              errors.email ? "login__input_error" : ""
+            }`}
             type="email"
             id="email"
             name="email"
             value={email}
             onChange={handleEmailChange}
-            />
+            disabled={props.isLoading}
+          />
           {errors.email && <span className="login__error">{errors.email}</span>}
         </div>
         <div className="login__input-block">
           <label className="login__text">Пароль</label>
-          <input 
-            className={`login__input ${errors.password ? 'login__input_error' : ''}`}
+          <input
+            className={`login__input ${
+              errors.password ? "login__input_error" : ""
+            }`}
             type="password"
             id="password"
             name="password"
             value={password}
             onChange={handlePasswordChange}
-            />
+            disabled={props.isLoading}
+          />
           {errors.password && (
             <span className="login__error">{errors.password}</span>
           )}
         </div>
-        <button className="login__button-login" type="submit">
+        <button
+          className={`${
+            !isFormValid()
+              ? "login__button-login_disabled"
+              : "login__button-login"
+          }`}
+          type="submit"
+          disabled={!isFormValid()}
+        >
+          <span className="login__login-error">{props.error}</span>
           Войти
         </button>
       </form>

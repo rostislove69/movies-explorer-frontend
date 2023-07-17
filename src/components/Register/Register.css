@@ -22,6 +22,7 @@
 }
 
 .register__form{
+  position: relative;
   width: 396px;
   margin: 40px 0 0 0;
 }
@@ -72,6 +73,7 @@
 }
 
 .register__button-registration{
+  position: relative;
   width: 100%;
   height: 45px;
   margin-top: 130px;
@@ -90,6 +92,28 @@
 .register__button-registration:hover{
   cursor: pointer;
   opacity: 0.9;
+}
+
+.register__button-registration_disabled{
+  position: relative;
+  width: 100%;
+  height: 45px;
+  margin-top: 130px;
+  background: grey;
+  border-radius: 3px;
+  border: none;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+  text-align: center;
+  color: #FFFFFF;
+}
+
+.register__button-registration_disabled:hover{
+  opacity: 1;
+  cursor:not-allowed;
 }
 
 .register__block{
@@ -127,6 +151,7 @@
 }
 
 .register__error{
+  position: absolute;
   width: 100%;
   margin-top: 6px;
   color:#FF3055;
@@ -135,6 +160,16 @@
   line-height: 12px;
   letter-spacing: 0em;
   text-align: left;
+}
+
+.register__register-error{
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+  position: absolute;
+  color: #FF3055;
+  top: -30px;
 }
 
 @media screen and (max-width: 1000px){
@@ -162,11 +197,17 @@
   .register__button-registration{
     margin-top: 260px;
   }
+  .register__button-registration_disabled{
+    margin-top: 260px;
+  }
   .register__text-already-register{
     font-size: 12px;
   }
   .register__button-enter{
     font-size: 12px;
+  }
+  .register__register-error{
+    top: -50px;
   }
 }
 

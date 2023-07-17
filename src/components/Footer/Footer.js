@@ -5,7 +5,7 @@ function Footer() {
   const location = useLocation();
   const currentPath = location.pathname;
   const getFooterHide = () => {
-    if (currentPath === '/signin' || currentPath === '/signup' || currentPath === '/profile') {
+    if (!(currentPath === "/movies" || currentPath === "/saved-movies" || currentPath === "/")) {
       return "footer_hide";
     } else {
       return "";

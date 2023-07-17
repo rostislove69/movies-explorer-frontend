@@ -1,0 +1,19 @@
+.movies__title{
+  height: 40px;
+  margin: 120px 30px 338px;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-style: normal;
+  font-weight: 400;
+  font-size: 13px;
+  line-height: 16px;
+  text-align: center;
+  color: #A0A0A0;
+  display: flex;
+  justify-content: center;
+}
+
+@media screen and (max-width: 650px){
+  .movies__title{
+    margin-bottom: 290px;
+  }
+}
